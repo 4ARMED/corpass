@@ -2,8 +2,7 @@ builds:
   - main: .
     binary: corpass
     ldflags:
-    - -extldflags '-static' 
-    - -X 'main.Version={{.Version}}'
+    - -extldflags '-static'
     env:
     - CGO_ENABLED=0
     goos:

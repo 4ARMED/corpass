@@ -16,26 +16,28 @@ import (
 )
 
 var (
-	Executable    string = "corpass"
-	Version       string = ""
+	executable    string = "corpass"
+	version       string = ""
+	commit        string = "none"
+	date          string = "unknown"
 	generatorList string
 	verbose       bool
-	version       bool
+	printVersion  bool
 	logLevel      *slog.LevelVar = new(slog.LevelVar)
 )
 
 func main() {
 	flag.StringVar(&generatorList, "generators", "upperlower,leet,numerics,punctuation", "comma separated list of generators to use")
 	flag.BoolVar(&verbose, "verbose", false, "enable verbose logging")
-	flag.BoolVar(&version, "version", false, "print version and exit")
+	flag.BoolVar(&printVersion, "version", false, "print version and exit")
 	flag.Usage = func() {
-		fmt.Printf("Usage: %s [string]\n\n", Executable)
+		fmt.Printf("Usage: %s [string]\n\n", executable)
 		flag.PrintDefaults()
 	}
 	flag.Parse()
 
-	if version {
-		fmt.Printf("%s %s", Executable, Version)
+	if printVersion {
+		fmt.Printf("%s %s (%s) %s", executable, version, commit, date)
 		return
 	}
 
