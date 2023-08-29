@@ -3,7 +3,7 @@ builds:
     binary: corpass
     ldflags:
     - -extldflags '-static' 
-    - -X github.com/4armed/corpass/main.Version={{.Version}}
+    - -X main.Version={{.Version}}
     env:
     - CGO_ENABLED=0
     goos:
