@@ -36,14 +36,23 @@ func NewGeneratorEngine(options ...GeneratorEngineOption) *GeneratorEngine {
 	return g
 }
 
-func (ge *GeneratorEngine) RegisterGenerator(g Generator) {
+func (ge *GeneratorEngine) RegisterGenerator(g Generator) error {
 	for _, existing := range ge.generators {
 		if existing.Name() == g.Name() {
-			return
+			return fmt.Errorf("generator with name %s already exists", g.Name())
 		}
 	}
 
 	ge.generators = append(ge.generators, g)
+
+	return nil
+}
+
+func (ge *GeneratorEngine) MustRegisterGenerator(g Generator) {
+	err := ge.RegisterGenerator(g)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func (ge *GeneratorEngine) Generate(ctx context.Context, generatorsToUse []string, input string) ([]string, error) {

@@ -45,10 +45,10 @@ func main() {
 	logger := slog.New(slog.NewTextHandler(os.Stderr, loggerOptions))
 
 	g := generators.NewGeneratorEngine()
-	g.RegisterGenerator(upperlower.NewUpperLowerGenerator())
-	g.RegisterGenerator(leet.NewLeetGenerator())
-	g.RegisterGenerator(numerics.NewNumericsGenerator())
-	g.RegisterGenerator(punctuation.NewPunctuationGenerator())
+	g.MustRegisterGenerator(upperlower.NewUpperLowerGenerator())
+	g.MustRegisterGenerator(leet.NewLeetGenerator())
+	g.MustRegisterGenerator(numerics.NewNumericsGenerator())
+	g.MustRegisterGenerator(punctuation.NewPunctuationGenerator())
 
 	// Process the generator list
 	generators := strings.Split(generatorList, ",")
