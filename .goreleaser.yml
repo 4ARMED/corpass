@@ -1,8 +1,6 @@
 builds:
   - main: .
     binary: corpass
-    ldflags:
-    - -extldflags '-static'
     env:
     - CGO_ENABLED=0
     goos:

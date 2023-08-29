@@ -17,7 +17,7 @@ import (
 
 var (
 	executable    string = "corpass"
-	version       string = ""
+	version       string = "dev"
 	commit        string = "none"
 	date          string = "unknown"
 	generatorList string
@@ -37,7 +37,7 @@ func main() {
 	flag.Parse()
 
 	if printVersion {
-		fmt.Printf("%s %s (%s) %s", executable, version, commit, date)
+		fmt.Printf("%s %s (%s) built at %s", executable, version, commit, date)
 		return
 	}
 
