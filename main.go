@@ -8,27 +8,35 @@ import (
 	"os"
 	"strings"
 
-	"github.com/4armed/corppass/generators"
-	"github.com/4armed/corppass/generators/leet"
-	"github.com/4armed/corppass/generators/numerics"
-	"github.com/4armed/corppass/generators/punctuation"
-	"github.com/4armed/corppass/generators/upperlower"
+	"github.com/4armed/corpass/generators"
+	"github.com/4armed/corpass/generators/leet"
+	"github.com/4armed/corpass/generators/numerics"
+	"github.com/4armed/corpass/generators/punctuation"
+	"github.com/4armed/corpass/generators/upperlower"
 )
 
 var (
-	executable    string = "corpass"
+	Executable    string = "corpass"
+	Version       string = "null"
 	generatorList string
 	verbose       bool
+	version       bool
 	logLevel      *slog.LevelVar = new(slog.LevelVar)
 )
 
 func main() {
 	flag.StringVar(&generatorList, "generators", "upperlower,leet,numerics,punctuation", "comma separated list of generators to use")
 	flag.BoolVar(&verbose, "verbose", false, "enable verbose logging")
+	flag.BoolVar(&version, "version", false, "print version and exit")
 	flag.Parse()
 
+	if version {
+		fmt.Println(Version)
+		return
+	}
+
 	if len(flag.Args()) == 0 {
-		fmt.Printf("Usage: %s [name]\n", executable)
+		fmt.Printf("Usage: %s [name]\n", Executable)
 		return
 	}
 
