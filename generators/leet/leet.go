@@ -2,7 +2,7 @@ package leet
 
 var (
 	leetMap = map[string]string{
-		"a": "4",
+		"a": "@",
 		"b": "8",
 		"e": "3",
 		"g": "6",
