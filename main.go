@@ -17,7 +17,7 @@ import (
 
 var (
 	Executable    string = "corpass"
-	Version       string = "null"
+	Version       string = ""
 	generatorList string
 	verbose       bool
 	version       bool
