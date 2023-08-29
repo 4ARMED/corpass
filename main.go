@@ -28,15 +28,19 @@ func main() {
 	flag.StringVar(&generatorList, "generators", "upperlower,leet,numerics,punctuation", "comma separated list of generators to use")
 	flag.BoolVar(&verbose, "verbose", false, "enable verbose logging")
 	flag.BoolVar(&version, "version", false, "print version and exit")
+	flag.Usage = func() {
+		fmt.Printf("Usage: %s [string]\n\n", Executable)
+		flag.PrintDefaults()
+	}
 	flag.Parse()
 
 	if version {
-		fmt.Println(Version)
+		fmt.Printf("%s %s", Executable, Version)
 		return
 	}
 
 	if len(flag.Args()) == 0 {
-		fmt.Printf("Usage: %s [name]\n", Executable)
+		flag.Usage()
 		return
 	}
 
