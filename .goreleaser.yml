@@ -1,12 +1,18 @@
 builds:
   - main: .
     binary: corpass
+    ldflags:
+    - -extldflags '-static' 
+    - -X main.version={{.Version}}
     env:
     - CGO_ENABLED=0
     goos:
       - linux
+      - darwin
+      - windows
     goarch:
       - amd64
+      - arm64
 archives:
 - format: binary
 checksum:
