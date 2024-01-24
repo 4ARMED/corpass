@@ -10,6 +10,7 @@ import (
 
 	"github.com/4armed/corpass/generators"
 	"github.com/4armed/corpass/generators/leet"
+	"github.com/4armed/corpass/generators/multiplier"
 	"github.com/4armed/corpass/generators/numerics"
 	"github.com/4armed/corpass/generators/punctuation"
 	"github.com/4armed/corpass/generators/upperlower"
@@ -27,7 +28,7 @@ var (
 )
 
 func main() {
-	flag.StringVar(&generatorList, "generators", "upperlower,leet,numerics,punctuation", "comma separated list of generators to use")
+	flag.StringVar(&generatorList, "generators", "upperlower,leet,numerics,punctuation,multiplier", "comma separated list of generators to use")
 	flag.BoolVar(&verbose, "verbose", false, "enable verbose logging")
 	flag.BoolVar(&printVersion, "version", false, "print version and exit")
 	flag.Usage = func() {
@@ -63,6 +64,7 @@ func main() {
 	g.MustRegisterGenerator(leet.NewLeetGenerator())
 	g.MustRegisterGenerator(numerics.NewNumericsGenerator())
 	g.MustRegisterGenerator(punctuation.NewPunctuationGenerator())
+	g.MustRegisterGenerator(multiplier.NewMultiplierGenerator())
 
 	// Process the generator list
 	generators := strings.Split(generatorList, ",")

@@ -1,11 +1,16 @@
 builds:
   - main: .
     binary: corpass
-    ldflags:
-    - -extldflags '-static' 
-    - -X main.version={{.Version}}
+    flags:
+      - -trimpath
     env:
-    - CGO_ENABLED=0
+      - CGO_ENABLED=0
+    asmflags:
+      - all=-trimpath={{.Env.GOPATH}}
+    gcflags:
+      - all=-trimpath={{.Env.GOPATH}}
+    ldflags: |
+      -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -extldflags '-static'
     goos:
       - linux
       - darwin
